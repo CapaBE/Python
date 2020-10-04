@@ -7,7 +7,7 @@ class House:
         
     def add_rooms(self, *room):
             for item in room:
-                if sum([room.size for room in self.rooms]) + item.size > self.available_space:
+                if self.size() + item.size > self.available_space:
                     raise NotEnoughSpaceError(f'There is not enough space in the house for the {item.name},  Available space: {self.available_space - self.totalsize} -- Space needed: {item.size} ')
                 else:
                     self.rooms.append(item)
@@ -15,7 +15,8 @@ class House:
                 
 
     def size(self):
-        return sum([room.size for room in self.rooms])
+        return sum(room.size for room in self.rooms)
+    
     
     def housesize(self):
         return len(self.rooms)
@@ -38,13 +39,13 @@ class Room:
 class NotEnoughSpaceError(Exception):
     pass
     
-h = House(20)
-bedroom = Room('bedroom', 10)
-kitchen = Room('kitchen', 9)
-bathroom = Room('bathroom', 3)
-h.add_rooms(bedroom, kitchen, bathroom)
-print(h.size())
-print(str(h))
+# h = House(20)
+# bedroom = Room('bedroom', 10)
+# kitchen = Room('kitchen', 9)
+# bathroom = Room('bathroom', 3)
+# h.add_rooms(bedroom, kitchen, bathroom)
+# print(h.size())
+# print(str(h))
 
 
 # h = House(100)
